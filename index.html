@@ -254,6 +254,7 @@
         tagline: 'Holdings · Operations',
         sector: 'Umbrella',
         paper: '#f6f3ee', ink: '#0b0b0b', accent: '#e21717', bar: '#0b0b0b',
+        url: 'v/nokto/',
         tasks: [
           { id: 'n00-t1', text: 'Consolidate Q2 ledgers across the six ventures', done: false },
           { id: 'n00-t2', text: 'Issue shared brand guidelines v3', done: false },
@@ -413,10 +414,10 @@
       // link
       const link = document.createElement('a');
       link.className = 'full-list-link';
-      link.href = '#';
+      link.href = v.url || '#';
+      if (!v.url) link.addEventListener('click', e => e.preventDefault());
       link.style.color = v.accent;
       link.textContent = variant === 'lede' ? 'Continue on the venture page →' : 'Full list →';
-      link.addEventListener('click', e => e.preventDefault());
       tile.appendChild(link);
 
       return tile;
