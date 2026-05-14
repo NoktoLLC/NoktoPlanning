@@ -97,6 +97,7 @@
       display: flex;
       flex-direction: column;
       padding: 32px;
+      position: relative;
     }
     .tile-lede { min-height: 480px; }
     .tile-brief { min-height: 420px; }
@@ -181,9 +182,9 @@
     .tile-brief .other-tasks .task-text { font-size: 12px; }
 
     .tile-logo {
-      display: flex;
-      justify-content: flex-end;
-      margin-bottom: 12px;
+      position: absolute;
+      top: 32px;
+      right: 32px;
     }
     .tile-logo img {
       max-height: 56px;
