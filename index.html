@@ -98,6 +98,7 @@
       flex-direction: column;
       padding: 32px;
       position: relative;
+      isolation: isolate;
     }
     .tile-lede { min-height: 480px; }
     .tile-brief { min-height: 420px; }
@@ -188,6 +189,7 @@
       align-items: center;
       justify-content: center;
       pointer-events: none;
+      z-index: 0;
     }
     .tile-logo img {
       max-height: 55%;
@@ -195,6 +197,10 @@
       width: auto;
       object-fit: contain;
       opacity: 0.07;
+    }
+    .tile > *:not(.tile-logo) {
+      position: relative;
+      z-index: 1;
     }
 
     .full-list-link {
@@ -392,13 +398,7 @@
       tile.style.background = v.paper;
       tile.style.color = v.ink;
 
-      // dateline
-      const dl = document.createElement('div');
-      dl.className = 'dateline';
-      dl.innerHTML = `<span>${v.code} · ${v.sector}</span><span>${open}/${total} open</span>`;
-      tile.appendChild(dl);
-
-      // logo
+      // logo — inserted first so it's lowest in stacking order
       if (v.logo) {
         const logoWrap = document.createElement('div');
         logoWrap.className = 'tile-logo';
@@ -411,6 +411,12 @@
         logoWrap.appendChild(logoImg);
         tile.appendChild(logoWrap);
       }
+
+      // dateline
+      const dl = document.createElement('div');
+      dl.className = 'dateline';
+      dl.innerHTML = `<span>${v.code} · ${v.sector}</span><span>${open}/${total} open</span>`;
+      tile.appendChild(dl);
 
       // name
       const name = document.createElement('div');
