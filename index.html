@@ -405,6 +405,9 @@
         const logoImg = document.createElement('img');
         logoImg.src = v.logo;
         logoImg.alt = v.name;
+        if (v.id === 'cnc-parts-pro')  { logoImg.style.opacity = '0.18'; }
+        if (v.id === 'industrial-cnc') { logoImg.style.opacity = '0.18'; }
+        if (v.id === 'bricklayer')     { logoImg.style.maxHeight = '80%'; logoImg.style.maxWidth = '85%'; }
         logoWrap.appendChild(logoImg);
         tile.appendChild(logoWrap);
       }
