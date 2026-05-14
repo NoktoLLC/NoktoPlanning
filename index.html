@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nokto Group — Portfolio Roadmap</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; border-radius: 0 !important; }
+
+    :root {
+      --ink: #0b0b0b;
+      --paper: #fafafa;
+      --red: #e21717;
+      --display: 'Archivo Black', sans-serif;
+      --mono: 'JetBrains Mono', monospace;
+    }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--mono);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── MASTHEAD ── */
+    header {
+      border-bottom: 4px solid var(--ink);
+    }
+    .mast-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 48px;
+      border-bottom: 1.5px solid var(--ink);
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+    .mast-top .center {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 13px;
+    }
+    .mast-logo-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 48px;
+      padding: 24px 48px;
+    }
+    .mast-byline {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      opacity: 0.6;
+      text-align: right;
+      max-width: 180px;
+      line-height: 1.6;
+    }
+    .mast-byline.left { text-align: left; }
+    .mast-logo-row img {
+      height: 100px;
+      width: auto;
+      object-fit: contain;
+    }
+    .mast-subhead {
+      text-align: center;
+      padding: 0 48px 32px;
+      font-family: 'Archivo Black', sans-serif;
+      font-size: clamp(36px, 4vw, 56px);
+      line-height: 0.95;
+      letter-spacing: -0.025em;
+      text-transform: uppercase;
+    }
+
+    /* ── GRID SEAMS ── */
+    .lede-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5px;
+      background: var(--ink);
+      border-bottom: 1.5px solid var(--ink);
+    }
+    .briefs-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5px;
+      background: var(--ink);
+    }
+
+    /* ── VENTURE TILES ── */
+    .tile {
+      display: flex;
+      flex-direction: column;
+      padding: 32px;
+    }
+    .tile-lede { min-height: 480px; }
+    .tile-brief { min-height: 420px; }
+
+    .dateline {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      opacity: 0.6;
+      padding-top: 10px;
+      margin-bottom: 16px;
+      border-top: 1.5px solid currentColor;
+    }
+    .tile-brief .dateline { font-size: 10px; }
+
+    .venture-name {
+      font-family: 'Archivo Black', sans-serif;
+      line-height: 0.95;
+      letter-spacing: -0.025em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .tile-lede .venture-name { font-size: clamp(32px, 3.2vw, 44px); }
+    .tile-brief .venture-name { font-size: clamp(18px, 2vw, 24px); }
+
+    .venture-tagline {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      opacity: 0.6;
+      margin-bottom: 24px;
+    }
+    .tile-brief .venture-tagline { font-size: 10px; margin-bottom: 16px; }
+
+    .section-label {
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      opacity: 0.4;
+      margin-bottom: 8px;
+    }
+
+    /* ── TASK COMPONENT ── */
+    .tasks { display: flex; flex-direction: column; gap: 8px; margin-top: auto; }
+    .tile-brief .tasks { gap: 4px; }
+
+    button.task {
+      display: block;
+      width: 100%;
+      text-align: left;
+      background: transparent;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      font-family: inherit;
+      color: inherit;
+      line-height: 1.2;
+    }
+    button.task:focus-visible {
+      outline: 2px dashed currentColor;
+      outline-offset: 4px;
+    }
+
+    .task-text {
+      background-image: linear-gradient(var(--bar), var(--bar));
+      background-repeat: no-repeat;
+      background-position: 0 58%;
+      background-size: 0% 0.52em;
+      transition: background-size 360ms cubic-bezier(.55, .02, .25, 1);
+      -webkit-box-decoration-break: clone;
+      box-decoration-break: clone;
+      padding: 0 0.08em;
+      margin: 0 -0.08em;
+    }
+    button.task[data-done="true"] .task-text {
+      background-size: 100% 0.52em;
+    }
+    button.task:not([data-done="true"]):hover .task-text {
+      box-shadow: inset 0 -0.06em 0 currentColor;
+    }
+
+    .headline-task .task-text {
+      font-family: 'Archivo Black', sans-serif;
+      line-height: 0.95;
+      letter-spacing: -0.025em;
+      text-transform: uppercase;
+    }
+    .tile-lede .headline-task .task-text { font-size: clamp(24px, 2.8vw, 40px); }
+    .tile-brief .headline-task .task-text { font-size: clamp(16px, 1.8vw, 22px); }
+
+    .other-tasks .task-text {
+      font-size: 14px;
+    }
+    .tile-brief .other-tasks .task-text { font-size: 12px; }
+
+    .full-list-link {
+      display: inline-block;
+      margin-top: 20px;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-bottom: 1.5px solid currentColor;
+      padding-bottom: 1px;
+    }
+    .tile-brief .full-list-link { margin-top: 14px; font-size: 10px; }
+    .full-list-link:hover { opacity: 0.7; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ink);
+      color: var(--paper);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 48px;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+    footer .mid { opacity: 0.6; }
+    footer .end { opacity: 0.35; }
+  </style>
+</head>
+<body>
+
+  <!-- MASTHEAD -->
+  <header>
+    <div class="mast-top">
+      <span>Vol. I · Edition 1</span>
+      <span class="center">The Portfolio Roadmap</span>
+      <span id="today-date"></span>
+    </div>
+    <div class="mast-logo-row">
+      <div class="mast-byline left">
+        <div>Nokto Group, LLC</div>
+        <div>Holdings &amp; Operations</div>
+      </div>
+      <img src="nokto-logo.png" alt="Nokto Group" />
+      <div class="mast-byline">
+        <div>Six ventures.</div>
+        <div>One dashboard.</div>
+      </div>
+    </div>
+    <div class="mast-subhead">What needs doing this week.</div>
+  </header>
+
+  <!-- LEDE (2 columns) -->
+  <section class="lede-grid" id="lede-grid"></section>
+
+  <!-- BRIEFS (4 columns) -->
+  <section class="briefs-grid" id="briefs-grid"></section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>© <span id="year"></span> Nokto Group, LLC</span>
+    <span class="mid">Click any line to redact it · Click again to revive</span>
+    <span class="end">End of edition</span>
+  </footer>
+
+  <script>
+    // ── DATA ──────────────────────────────────────────────────────────────
+    const VENTURES = [
+      {
+        id: 'nokto',
+        code: 'N00',
+        name: 'Nokto Group',
+        tagline: 'Holdings · Operations',
+        sector: 'Umbrella',
+        paper: '#f6f3ee', ink: '#0b0b0b', accent: '#e21717', bar: '#0b0b0b',
+        tasks: [
+          { id: 'n00-t1', text: 'Consolidate Q2 ledgers across the six ventures' },
+          { id: 'n00-t2', text: 'Issue shared brand guidelines v3' },
+          { id: 'n00-t3', text: 'Hire portfolio operations lead' },
+          { id: 'n00-t4', text: 'Stand up internal status dashboard' },
+          { id: 'n00-t5', text: 'File annual report with the state' },
+        ],
+      },
+      {
+        id: 'cnc-parts-pro',
+        code: 'N01',
+        name: 'CNC Parts Pro',
+        tagline: 'Precision components · DTC',
+        sector: 'Commerce',
+        paper: '#e5956f', ink: '#2a2624', accent: '#545051', bar: '#2a2624',
+        tasks: [
+          { id: 'n01-t1', text: 'Photograph the spring 26 catalog' },
+          { id: 'n01-t2', text: 'Migrate checkout to the new processor' },
+          { id: 'n01-t3', text: 'Audit Amazon listings for FBA compliance' },
+          { id: 'n01-t4', text: 'Source replacement supplier for collet sets' },
+          { id: 'n01-t5', text: 'Launch reseller program for shop accounts' },
+        ],
+      },
+      {
+        id: 'cassy-is-wary',
+        code: 'N02',
+        name: 'Cassy Is Wary',
+        tagline: 'Independent media · Weekly',
+        sector: 'Media',
+        paper: '#f7f6f4', ink: '#0a0a0a', accent: '#4a7fd4', bar: '#0a0a0a',
+        tasks: [
+          { id: 'n02-t1', text: 'Book the cybersecurity guest for episode 41' },
+          { id: 'n02-t2', text: 'Record cold open and three episode promos' },
+          { id: 'n02-t3', text: 'Renew the newsletter domain and SSL' },
+          { id: 'n02-t4', text: 'Pitch the season trailer to three outlets' },
+        ],
+      },
+      {
+        id: 'industrial-cnc',
+        code: 'N03',
+        name: 'Industrial CNC',
+        tagline: 'Contract machining · B2B',
+        sector: 'Manufacturing',
+        paper: '#d01c18', ink: '#0a0a0a', accent: '#0a0a0a', bar: '#0a0a0a',
+        tasks: [
+          { id: 'n03-t1', text: 'Quote the aerospace bracket production run' },
+          { id: 'n03-t2', text: 'Recertify the Haas to ISO 9001 standards' },
+          { id: 'n03-t3', text: 'Negotiate raw aluminum contract for the year' },
+          { id: 'n03-t4', text: 'Hire a second-shift machinist before June' },
+          { id: 'n03-t5', text: 'Replace the coolant filtration system' },
+        ],
+      },
+      {
+        id: 'ghost-wanted',
+        code: 'N04',
+        name: 'Ghost Wanted',
+        tagline: 'Apparel · Story-driven drops',
+        sector: 'Brand',
+        paper: '#21201f', ink: '#d19c4b', accent: '#d19c4b', bar: '#d19c4b',
+        tasks: [
+          { id: 'n04-t1', text: 'Finalize the spring drop lookbook' },
+          { id: 'n04-t2', text: 'Set up the Shopify pre-order gate' },
+          { id: 'n04-t3', text: 'Confirm screen printer for tee run of 400' },
+          { id: 'n04-t4', text: 'Shoot the campaign film at the old grain mill' },
+        ],
+      },
+      {
+        id: 'bricklayer',
+        code: 'N05',
+        name: 'Bricklayer',
+        tagline: 'Masonry · Restoration',
+        sector: 'Trades',
+        paper: '#a0432f', ink: '#f4ebd9', accent: '#f4ebd9', bar: '#2a1410',
+        tasks: [
+          { id: 'n05-t1', text: 'Walk the 14th Street facade job for the bid' },
+          { id: 'n05-t2', text: 'Order three pallets of reclaimed common brick' },
+          { id: 'n05-t3', text: 'Renew commercial liability through October' },
+          { id: 'n05-t4', text: 'Train the new apprentice on lime mortar mixes' },
+          { id: 'n05-t5', text: 'Schedule the chimney rebuild for the Hartley house' },
+        ],
+      },
+    ];
+
+    // ── PERSISTENCE ───────────────────────────────────────────────────────
+    const STORE_KEY = 'nokto-tasks';
+    function loadDone() {
+      try { return JSON.parse(localStorage.getItem(STORE_KEY) || '{}'); }
+      catch { return {}; }
+    }
+    function saveDone(map) {
+      localStorage.setItem(STORE_KEY, JSON.stringify(map));
+    }
+    let doneMap = loadDone();
+
+    function isDone(taskId) { return !!doneMap[taskId]; }
+    function toggle(taskId) {
+      doneMap[taskId] = !doneMap[taskId];
+      saveDone(doneMap);
+    }
+
+    // ── HELPERS ───────────────────────────────────────────────────────────
+    function topTask(v) {
+      return v.tasks.find(t => !isDone(t.id)) || v.tasks[v.tasks.length - 1];
+    }
+    function openCount(v) { return v.tasks.filter(t => !isDone(t.id)).length; }
+    function mostOpen(ventures) {
+      return ventures.slice(1).reduce((best, v) =>
+        openCount(v) > openCount(best) ? v : best, ventures[1]);
+    }
+
+    // ── RENDER ────────────────────────────────────────────────────────────
+    function makeTask(task, v, extraClass = '') {
+      const btn = document.createElement('button');
+      btn.className = 'task ' + extraClass;
+      btn.type = 'button';
+      btn.setAttribute('data-done', isDone(task.id) ? 'true' : 'false');
+      btn.setAttribute('aria-pressed', isDone(task.id) ? 'true' : 'false');
+      btn.style.setProperty('--bar', v.bar);
+
+      const span = document.createElement('span');
+      span.className = 'task-text';
+      span.textContent = task.text;
+      btn.appendChild(span);
+
+      btn.addEventListener('click', () => {
+        toggle(task.id);
+        const now = isDone(task.id);
+        btn.setAttribute('data-done', now ? 'true' : 'false');
+        btn.setAttribute('aria-pressed', now ? 'true' : 'false');
+      });
+      return btn;
+    }
+
+    function makeTile(v, variant) {
+      const top = topTask(v);
+      const others = v.tasks.filter(t => t.id !== top.id);
+      const open = openCount(v);
+      const total = v.tasks.length;
+
+      const tile = document.createElement('div');
+      tile.className = `tile tile-${variant}`;
+      tile.style.background = v.paper;
+      tile.style.color = v.ink;
+
+      // dateline
+      const dl = document.createElement('div');
+      dl.className = 'dateline';
+      dl.innerHTML = `<span>${v.code} · ${v.sector}</span><span>${open}/${total} open</span>`;
+      tile.appendChild(dl);
+
+      // name
+      const name = document.createElement('div');
+      name.className = 'venture-name';
+      name.textContent = v.name.toUpperCase();
+      tile.appendChild(name);
+
+      // tagline
+      const tag = document.createElement('div');
+      tag.className = 'venture-tagline';
+      tag.textContent = v.tagline.toUpperCase();
+      tile.appendChild(tag);
+
+      // section label
+      const label = document.createElement('div');
+      label.className = 'section-label';
+      label.textContent = variant === 'lede' ? 'Lede' : 'Next up';
+      tile.appendChild(label);
+
+      // headline task
+      const headlineWrap = document.createElement('div');
+      headlineWrap.className = 'headline-task';
+      headlineWrap.appendChild(makeTask(top, v, 'headline-task'));
+      tile.appendChild(headlineWrap);
+
+      // other tasks
+      const othersWrap = document.createElement('div');
+      othersWrap.className = 'tasks other-tasks';
+      const limit = variant === 'lede' ? 4 : 3;
+      others.slice(0, limit).forEach(t => othersWrap.appendChild(makeTask(t, v)));
+      tile.appendChild(othersWrap);
+
+      // link
+      const link = document.createElement('a');
+      link.className = 'full-list-link';
+      link.href = '#';
+      link.style.color = v.accent;
+      link.textContent = variant === 'lede' ? 'Continue on the venture page →' : 'Full list →';
+      link.addEventListener('click', e => e.preventDefault());
+      tile.appendChild(link);
+
+      return tile;
+    }
+
+    function render() {
+      const ledeGrid  = document.getElementById('lede-grid');
+      const briefGrid = document.getElementById('briefs-grid');
+      ledeGrid.innerHTML  = '';
+      briefGrid.innerHTML = '';
+
+      const umbrella = VENTURES[0];
+      const featured = mostOpen(VENTURES);
+      const briefs   = VENTURES.slice(1).filter(v => v.id !== featured.id);
+
+      ledeGrid.appendChild(makeTile(umbrella, 'lede'));
+      ledeGrid.appendChild(makeTile(featured,  'lede'));
+      briefs.forEach(v => briefGrid.appendChild(makeTile(v, 'brief')));
+    }
+
+    // ── INIT ──────────────────────────────────────────────────────────────
+    const now = new Date();
+    document.getElementById('today-date').textContent =
+      now.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }).toUpperCase();
+    document.getElementById('year').textContent = now.getFullYear();
+
+    render();
+  </script>
+</body>
+</html>
