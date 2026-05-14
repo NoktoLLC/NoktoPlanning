@@ -194,7 +194,8 @@
     list.appendChild(countEl);
 
     TASKS.forEach((task, i) => {
-      const isDisplay = i < 1;
+      const firstOpen = TASKS.findIndex(t => !t.done);
+      const isDisplay = i === firstOpen;
       const row = document.createElement('div');
       row.className = `task-row ${isDisplay ? '' : 'small'}`;
       row.setAttribute('data-done', task.done ? 'true' : 'false');
