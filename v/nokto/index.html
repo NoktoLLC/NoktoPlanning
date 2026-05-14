@@ -121,10 +121,10 @@
       background-size: 100% 0.52em;
     }
 
-    /* Top tasks — big display type */
+    /* Next up — big display type (first task only) */
     .task-display .task-text {
       font-family: 'Archivo Black', sans-serif;
-      font-size: clamp(32px, 5vw, 72px);
+      font-size: clamp(28px, 4vw, 56px);
       line-height: 0.95;
       letter-spacing: -0.025em;
       text-transform: uppercase;
@@ -132,8 +132,8 @@
 
     /* Remaining tasks — mono */
     .task-mono .task-text {
-      font-size: 22px;
-      line-height: 1.3;
+      font-size: 16px;
+      line-height: 1.4;
       letter-spacing: 0;
     }
 
@@ -194,7 +194,7 @@
     list.appendChild(countEl);
 
     TASKS.forEach((task, i) => {
-      const isDisplay = i < 3;
+      const isDisplay = i < 1;
       const row = document.createElement('div');
       row.className = `task-row ${isDisplay ? '' : 'small'}`;
       row.setAttribute('data-done', task.done ? 'true' : 'false');
