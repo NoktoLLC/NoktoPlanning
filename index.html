@@ -180,6 +180,23 @@
     }
     .tile-brief .other-tasks .task-text { font-size: 12px; }
 
+    .tile-logo {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 12px;
+    }
+    .tile-logo img {
+      max-height: 40px;
+      max-width: 140px;
+      width: auto;
+      object-fit: contain;
+      opacity: 0.9;
+    }
+    .tile-brief .tile-logo img {
+      max-height: 28px;
+      max-width: 100px;
+    }
+
     .full-list-link {
       display: inline-block;
       margin-top: 20px;
@@ -255,7 +272,7 @@
         tagline: 'Holdings · Operations',
         sector: 'Umbrella',
         paper: '#f6f3ee', ink: '#0b0b0b', accent: '#e21717', bar: '#0b0b0b',
-        url: 'v/nokto/',
+        url: 'v/nokto/', logo: 'logos/nokto.png',
         tasks: [
           { id: 'n00-t1', text: 'Consolidate Q2 ledgers across the six ventures', done: false },
           { id: 'n00-t2', text: 'Issue shared brand guidelines v3', done: false },
@@ -270,7 +287,7 @@
         name: 'CNC Parts Pro',
         tagline: 'Precision components · DTC',
         sector: 'Commerce',
-        paper: '#e5956f', ink: '#2a2624', accent: '#545051', bar: '#2a2624',
+        paper: '#e5956f', ink: '#2a2624', accent: '#545051', bar: '#2a2624', logo: 'logos/cnc-parts-pro.png',
         tasks: [
           { id: 'n01-t1', text: 'Photograph the spring 26 catalog', done: false },
           { id: 'n01-t2', text: 'Migrate checkout to the new processor', done: false },
@@ -285,7 +302,7 @@
         name: 'Cassy Is Wary',
         tagline: 'Independent media · Weekly',
         sector: 'Media',
-        paper: '#f7f6f4', ink: '#0a0a0a', accent: '#4a7fd4', bar: '#0a0a0a',
+        paper: '#f7f6f4', ink: '#0a0a0a', accent: '#4a7fd4', bar: '#0a0a0a', logo: 'logos/cassy-is-wary.png',
         tasks: [
           { id: 'n02-t1', text: 'Book the cybersecurity guest for episode 41', done: false },
           { id: 'n02-t2', text: 'Record cold open and three episode promos', done: false },
@@ -299,7 +316,7 @@
         name: 'Industrial CNC',
         tagline: 'Contract machining · B2B',
         sector: 'Manufacturing',
-        paper: '#d01c18', ink: '#0a0a0a', accent: '#0a0a0a', bar: '#0a0a0a',
+        paper: '#d01c18', ink: '#0a0a0a', accent: '#0a0a0a', bar: '#0a0a0a', logo: 'logos/industrial-cnc.png',
         tasks: [
           { id: 'n03-t1', text: 'Quote the aerospace bracket production run', done: false },
           { id: 'n03-t2', text: 'Recertify the Haas to ISO 9001 standards', done: false },
@@ -314,7 +331,7 @@
         name: 'Ghost Wanted',
         tagline: 'Apparel · Story-driven drops',
         sector: 'Brand',
-        paper: '#21201f', ink: '#d19c4b', accent: '#d19c4b', bar: '#d19c4b',
+        paper: '#21201f', ink: '#d19c4b', accent: '#d19c4b', bar: '#d19c4b', logo: 'logos/ghost-wanted.png',
         tasks: [
           { id: 'n04-t1', text: 'Finalize the spring drop lookbook', done: false },
           { id: 'n04-t2', text: 'Set up the Shopify pre-order gate', done: false },
@@ -328,7 +345,7 @@
         name: 'Bricklayer',
         tagline: 'Masonry · Restoration',
         sector: 'Trades',
-        paper: '#a0432f', ink: '#f4ebd9', accent: '#f4ebd9', bar: '#2a1410',
+        paper: '#a0432f', ink: '#f4ebd9', accent: '#f4ebd9', bar: '#2a1410', logo: 'logos/bricklayer.png',
         tasks: [
           { id: 'n05-t1', text: 'Walk the 14th Street facade job for the bid', done: false },
           { id: 'n05-t2', text: 'Order three pallets of reclaimed common brick', done: false },
@@ -380,6 +397,17 @@
       dl.className = 'dateline';
       dl.innerHTML = `<span>${v.code} · ${v.sector}</span><span>${open}/${total} open</span>`;
       tile.appendChild(dl);
+
+      // logo
+      if (v.logo) {
+        const logoWrap = document.createElement('div');
+        logoWrap.className = 'tile-logo';
+        const logoImg = document.createElement('img');
+        logoImg.src = v.logo;
+        logoImg.alt = v.name;
+        logoWrap.appendChild(logoImg);
+        tile.appendChild(logoWrap);
+      }
 
       // name
       const name = document.createElement('div');
